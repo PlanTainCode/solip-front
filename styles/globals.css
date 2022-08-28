@@ -267,26 +267,34 @@
 
 @layer components {
   .container {
-    @apply max-w-6xl mx-auto;
+    @apply px-6 mx-auto lg:max-w-6xl lg:px-0;
   }
 
-  .text-h1 {
-    @apply font-caption font-semibold text-64px uppercase;
+  .t-h1 {
+    @apply font-caption font-semibold uppercase text-32px lg:text-64px;
   }
 
-  .text-h2 {
-    @apply font-caption font-semibold text-24px;
+  .t-h2 {
+    @apply font-caption font-semibold text-18px lg:text-24px;
   }
 
-  .text-display {
-    @apply font-display font-black text-106px;
+  .t-display {
+    @apply font-display font-black text-64px lg:text-106px;
   }
 
-  .text-display-lg {
-    @apply font-display font-black text-240px;
+  .t-display-lg {
+    @apply font-display font-black text-106px lg:text-240px;
+  }
+
+  .t-40 {
+    @apply text-20px lg:text-40px;
+  }
+
+  .t-24 {
+    @apply text-16px lg:text-24px;
   }
 
   .paragraph {
-    @apply before:inline-block before:w-12 before:h-[1px] before:bg-current before:align-middle before:mr-3 before:ml-0.5;
+    @apply before:inline-block before:w-8 before:h-[1px] before:bg-current before:align-middle before:mr-2 before:ml-0.5 lg:before:w-12 lg:before:mr-3;
   }
 }
