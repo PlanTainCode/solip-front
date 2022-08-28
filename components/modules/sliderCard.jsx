@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 const Navbar = ({currentNumber = 1, countAllSlides = 1}) => {
-  const widthInPercent = Math.floor(1 / countAllSlides * 100);
+  const widthInPercent = 1 / countAllSlides * 100;
   const offsetInPercent = (currentNumber - 1) * 100;
 
   return (

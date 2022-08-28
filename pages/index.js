@@ -6,17 +6,19 @@ import advantage_1_1 from '../public/images/home/advantage-1-1.jpg';
 import advantage_2_1 from '../public/images/home/advantage-2-1.jpg';
 import advantage_3_1 from '../public/images/home/advantage-3-1.jpg';
 import work_1 from '../public/images/home/work-1.jpg';
-import human_1 from '../public/images/home/human-1.jpg';
-import human_2 from '../public/images/home/human-2.jpg';
-import human_3 from '../public/images/home/human-3.jpg';
+import human_1 from '../public/images/team/human-1.jpg';
+import human_2 from '../public/images/team/human-2.jpg';
+import human_3 from '../public/images/team/human-3.jpg';
 import IconSolip from '../components/icons/solip.svg';
 import cn from 'classnames';
 import MainLayout from '../components/layouts/mainLayout';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SliderCard from '../components/modules/sliderCard';
+import StepBlocks from '../components/modules/stepBlocks';
+import Employee from '../components/elements/employee';
 
-const employees = [
+const team = [
   {
     name: 'Зураб',
     job: 'Прораб-плиточник',
@@ -52,24 +54,33 @@ const slides = [
   },
 ];
 
+const blocks = [
+  {
+    title: 'Быстрая реализация проектов',
+    text: 'Мы приступим к проекту сразу же после согласования и закончим его тогда, когда это нужно именно вам. Время – ценнейший ресурс, который мы для вас экономим.',
+    slides: slides,
+  },
+  {
+    title: 'Забота о природе',
+    text: 'Мы заботимся о природе и уважаем пространство, в котором живем – поэтому в работе мы стараемся использовать экологичные материалы.',
+    slides: slides,
+  },
+  {
+    title: 'Высокое качество исполнения',
+    text: 'Мы гарантируем высокое качество выполнения всех ремонтных работ благодаря штату профессионалов, имеющих большое портфолио в самых разных стилях и техниках стротельства.',
+    slides: slides,
+  },
+];
+
 export default function Home() {
-  const Employee = ({ name, job, image }) => {
-    return (
-      <div className="relative rounded-3xl overflow-hidden h-100 w-80 lg:h-122.5 lg:w-full">
-        <Image src={image} alt='1' layout='fill' className='block w-full' objectFit='cover'/>
-
-        <div className="absolute w-[268px] bottom-0 right-0 bg-silver rounded-tl-3xl p-5 lg:w-75 lg:pt-7 lg:px-8 lg:pb-5">
-          { name && <p className="t-h2">{name}</p> }
-          { job && <p className="t-24 mt-1">{job}</p> }
-        </div>
-      </div>
-    );
-  };
-
   return (
     <MainLayout>
-      <section className='relative mt-10 text-silver rounded-b-3xl rounded-t-[40px] overflow-hidden h-[448px] lg:h-165 lg:rounded-t-[80px] lg:mt-20'>
-        <Image src={banner} alt='banner' layout='fill' objectFit='cover' />
+      <Head>
+        <title>Solip</title>
+      </Head>
+
+      <section className='relative text-silver rounded-b-3xl rounded-t-[40px] overflow-hidden h-[448px] lg:h-165 lg:rounded-t-[80px]'>
+        <Image src={banner} alt='banner' layout='fill' objectFit='cover' style={{transform: 'translate3d(0, 0, 0)'}}/>
         <div className="absolute left-0 top-0 right-0 bottom-0 bg-black/50 lg:bg-black/40"></div>
         <div className="absolute left-0 top-0 right-0 bottom-0 pb-6 flex flex-col">
           <IconSolip/>
@@ -77,7 +88,7 @@ export default function Home() {
             <p className="t-40 mt-4 lg:w-107.5">ремонт домов и квартир в Гётеборге</p>
             <p className="paragraph t-24 mt-5 lg:absolute lg:right-8 lg:bottom-8 lg:w-[58%]">Ваш комфорт – наша главная задача. Мы поможем качественно и быстро воплотить ваши самые смелые идеи, применяя высокие стандарты качества и экологичности. Оперативная разработка проекта по вашему вкусу и начало работ в удобное для вас время.</p>
             <div className="mt-auto lg:absolute lg:left-8 lg:bottom-8 lg:w-80">
-              <Button>О нас</Button>
+              <Button link='/about'>О нас</Button>
             </div>
           </div>
         </div>
@@ -98,51 +109,7 @@ export default function Home() {
           <h2 className="t-h1 text-green col-span-8">Наши преимущества</h2>
         </div>
 
-        <div className="space-y-12 lg:-space-y-16">
-          <div className="lg:grid grid-cols-12 gap-x-10">
-            <div className="pb-8 lg:col-span-6 lg:flex lg:items-center lg:pb-16">
-              <div className="pr-10">
-                <p className="t-display text-green">01.</p>
-                <p className="t-h2">Быстрая реализация проектов</p>
-                <p className='paragraph t-24 mt-5 lg:mt-6'>Мы приступим к проекту сразу же после согласования и закончим его тогда, когда это нужно именно вам. Время – ценнейший ресурс, который мы для вас экономим.</p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 lg:-order-1">
-              <SliderCard slides={slides} showNavbar showDots/>
-            </div>
-          </div>
-
-          <div className="lg:grid grid-cols-12 gap-x-10">
-            <div className="pb-8 lg:col-span-6 lg:flex lg:items-center lg:pb-16">
-              <div className="pr-10">
-                <p className="t-display text-green">02.</p>
-                <p className="t-h2">Забота о природе</p>
-                <p className='paragraph t-24 mt-5 lg:mt-6'>Мы заботимся о природе и уважаем пространство, в котором живем – поэтому в работе мы стараемся использовать экологичные материалы.</p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <SliderCard slides={slides} showNavbar showDots/>
-            </div>
-          </div>
-
-          <div className="lg:grid grid-cols-12 gap-x-10">
-            <div className="pb-8 lg:col-span-6 lg:flex lg:items-center lg:pb-16">
-              <div className="pr-10">
-                <p className="t-display text-green">03.</p>
-                <p className="t-h2">Высокое качество исполнения</p>
-                <p className='paragraph t-24 mt-5 lg:mt-6'>Мы гарантируем высокое качество выполнения всех ремонтных работ благодаря штату профессионалов, имеющих большое портфолио в самых разных стилях и техниках стротельства.</p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 lg:-order-1">
-              <SliderCard slides={slides} showNavbar showDots/>
-            </div>
-          </div>
-
-        </div>
-
+        <StepBlocks blocks={blocks}/>
       </section>
 
       <section className="mt-14 lg:mt-20">
@@ -244,12 +211,18 @@ export default function Home() {
               width={320}
               autoHeight={true}
             >
-              {employees.map((employee, index) => (<SwiperSlide key={index}><Employee {...employee}/></SwiperSlide>))}
+              {team.map((employee, index) => (
+                <SwiperSlide key={index}>
+                  <div className="w-80">
+                    <Employee {...employee}/>
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
 
           <div className="hidden lg:grid grid-cols-12 gap-x-10">
-            {employees.map((employee, index) => (
+            {team.map((employee, index) => (
               <div key={index} className='col-span-4'>
                 <Employee {...employee}/>
               </div>)
@@ -258,7 +231,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10">
-          <Button color='black'>Остальные</Button>
+          <Button color='black' link='team'>Остальные</Button>
         </div>
       </section>
 

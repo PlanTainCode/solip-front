@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
       </section>
 
-      <footer className="mt-10 bg-black rounded-t-3xl px-6 py-7 text-18px lg:p-10">
+      <footer className="mt-12 bg-black rounded-t-3xl px-6 py-7 text-18px lg:p-10">
         <div className="lg:flex lg:gap-x-20">
           {footerMenuChunks.map(
             (items, index) => <RenderMenu items={items} key={index}/>
