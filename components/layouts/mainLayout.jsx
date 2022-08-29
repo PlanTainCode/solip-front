@@ -4,14 +4,16 @@ import Footer from '../modules/footer';
 
 export default function MainLayout({children}) {
   return (
-    <div className="container">
-      {/* <Head></Head> */}
-
+    <>
       <Header/>
-      <main>
-        {children}
-      </main>
-      <Footer/>
-    </div>
+      <div className="container">
+        {/* <Head></Head> */}
+
+        <main>
+          {children}
+        </main>
+        <Footer/>
+      </div>
+    </>
   );
 }
