@@ -1,4 +1,5 @@
 import cn from "classnames";
+import Link from "next/link";
 import Button from "../elements/button";
 
 function spliceIntoChunks(arr, chunkSize = 2) {
@@ -27,7 +28,9 @@ export default function Footer() {
   const renderMenuItems = (items) => {
     return items.map(({link, title}) => (
       <li key={title}>
-        <a href={link} className="text-silver/60 hover:underline underline-offset-2">{title}</a>
+        <Link href={link}>
+          <a className="text-silver/60 hover:underline underline-offset-2">{title}</a>
+        </Link>
       </li>
     ))
   };
