@@ -57,7 +57,7 @@ export default function About() {
       <Head>
         <title>О нас</title>
       </Head>
-      <Image src={imageSolip} alt='' layout='responsive' />
+      <Image src={imageSolip} alt='' layout='responsive' placeholder="blur"/>
       <div className="mt-10 space-y-4 lg:mt-16 lg:space-y-6">
         {texts.map((text, index) => (
           <div className="paragraph t-24" key={index}>{text}</div>

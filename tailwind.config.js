@@ -22,6 +22,7 @@ module.exports = {
     },
     fontSize: {
       '12px': '0.75rem',
+      '14px': '0.875rem',
       '16px': '1rem',
       '18px': '1.125rem',
       '20px': '1.25rem',
@@ -45,5 +46,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

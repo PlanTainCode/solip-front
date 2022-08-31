@@ -7,7 +7,7 @@ import Form from './form';
 
 const menu = [
   { title: 'главная', link: '/' },
-  // { title: 'услуги', link: '#' },
+  { title: 'услуги', link: '/services' },
   { title: 'портфолио', link: '/projects' },
   { title: 'контакты', link: '/contacts' },
   // { title: 'материалы', link: '#' },
