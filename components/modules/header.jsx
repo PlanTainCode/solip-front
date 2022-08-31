@@ -4,18 +4,28 @@ import IconMenu from '../icons/menu.svg';
 import IconClose from '../icons/close.svg';
 import cn from 'classnames';
 import Form from './form';
+import { useRouter } from 'next/router';
 
 const menu = [
   { title: 'главная', link: '/' },
   { title: 'услуги', link: '/services' },
   { title: 'портфолио', link: '/projects' },
   { title: 'контакты', link: '/contacts' },
-  // { title: 'материалы', link: '#' },
+  { title: 'новости', link: '/news' },
+  { title: 'полезные материалы', link: '/resources' },
   { title: 'о нас', link: '/about' },
 ];
 
-const MenuLink = ({ title, link, onClick }) => {
+const MenuLink = ({ title, link, onClick, router }) => {
   if (link) {
+
+    if (link === router.route) {
+      return (
+        <li>
+          <span className='underline underline-offset-2' onClick={onClick}>{title}</span>
+        </li>
+      );
+    }
     return (
       <li>
         <Link href={link}>
@@ -32,6 +42,7 @@ const MenuLink = ({ title, link, onClick }) => {
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
 
   return (
     <header className="h-12 lg:h-16">
@@ -51,7 +62,15 @@ export default function Header() {
         )}>
           <div className="container flex items-center justify-between">
             <ul className="flex gap-8 text-18px">
-              {menu.map(({title, link}) => <MenuLink key={title} title={title} link={link} onClick={() => setShowMenu(false)}/>)}
+              {menu.map(({title, link}) =>
+                <MenuLink
+                  key={title}
+                  title={title}
+                  link={link}
+                  router={router}
+                  onClick={() => setShowMenu(false)}
+                />
+              )}
             </ul>
             <button className='bg-white rounded-full p-1' onClick={() => setShowMenu(false)}>
               <IconClose className='w-6 h-6'/>
@@ -75,7 +94,15 @@ export default function Header() {
             </div>
 
             <ul className="text-18px space-y-3 pt-7">
-              {menu.map(({title, link}) => <MenuLink key={title} title={title} link={link} onClick={() => setShowMenu(false)}/>)}
+              {menu.map(({title, link}) =>
+                <MenuLink
+                  key={title}
+                  title={title}
+                  link={link}
+                  router={router}
+                  onClick={() => setShowMenu(false)}
+                />
+              )}
             </ul>
 
             <div className="mt-16">

@@ -11,22 +11,23 @@ function spliceIntoChunks(arr, chunkSize = 2) {
 }
 
 export default function Footer() {
-  const footerMenu = [
-    { link: '#', text: 'главная' },
-    { link: '#', text: 'услуги' },
-    { link: '#', text: 'портфолио' },
-    { link: '#', text: 'новости' },
-    { link: '#', text: 'полезные статьи' },
-    { link: '#', text: 'о нас' },
-    { link: '#', text: 'корневой вычет' },
-    { link: '#', text: 'политика конфиденциальности' },
+  const menu = [
+    { title: 'главная', link: '/' },
+    { title: 'услуги', link: '/services' },
+    { title: 'портфолио', link: '/projects' },
+    { title: 'контакты', link: '/contacts' },
+    { title: 'новости', link: '/news' },
+    { title: 'полезные материалы', link: '/resources' },
+    { title: 'о нас', link: '/about' },
+    { title: 'корневой вычет', link: '#' },
+    { title: 'политика конфиденциальности', link: '#' },
   ];
 
-  const footerMenuChunks = spliceIntoChunks(footerMenu, 4);
+  const footerMenuChunks = spliceIntoChunks(menu, 4);
   const renderMenuItems = (items) => {
-    return items.map(({link, text}) => (
-      <li key={text}>
-        <a href={link} className="text-silver/60 hover:underline underline-offset-2">{text}</a>
+    return items.map(({link, title}) => (
+      <li key={title}>
+        <a href={link} className="text-silver/60 hover:underline underline-offset-2">{title}</a>
       </li>
     ))
   };
