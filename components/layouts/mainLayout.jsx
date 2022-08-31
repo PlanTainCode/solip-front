@@ -6,7 +6,7 @@ export default function MainLayout({children}) {
   return (
     <>
       <Header/>
-      <div className="container">
+      <div className="container flex flex-col min-h-screen">
         {/* <Head></Head> */}
 
         <main>

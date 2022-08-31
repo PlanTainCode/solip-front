@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <>
       <section className={cn(
-        'rounded-3xl bg-green text-silver px-5 py-6',
+        'rounded-3xl bg-green text-silver px-5 py-6 mt-auto',
         'lg:flex lg:justify-between lg:items-center lg:px-8 lg:py-7'
       )}>
         <p className="paragraph t-24 max-w-[680px]">Вам нужно построить дом или помещение? Solip может помочь вам с реализацией ваших задумок – с этапа проекта и получения одобрения до сдачи в эксплуатацию.</p>
