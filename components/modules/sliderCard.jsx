@@ -5,38 +5,8 @@ import SlidePrevButton from '../elements/slidePrevButton';
 import cn from 'classnames';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-
-const Navbar = ({currentNumber = 1, countAllSlides = 1}) => {
-  const widthInPercent = 1 / countAllSlides * 100;
-  const offsetInPercent = (currentNumber - 1) * 100;
-
-  return (
-    <div className="absolute left-0 top-10 right-0 z-10 border-t-2 border-silver lg:top-12">
-      <div
-        className="h-2 bg-silver transition-transform duration-500 lg:h-2.5"
-        style={{
-          width: `${widthInPercent}%`,
-          transform: `translate3d(${offsetInPercent}%, 0, 0)`,
-        }}
-      ></div>
-    </div>
-  );
-}
-
-const Dots = ({currentNumber = 1, countAllSlides = 1}) => {
-  const dots = Array.from({length: countAllSlides});
-
-  return (
-    <div className="flex justify-center mt-4 lg:mt-6">
-      {dots.map((_, index) => (
-        <div key={index} className={cn(
-          'w-2 h-2 mx-1 rounded-full border border-green',
-          {'bg-green': index + 1 === currentNumber}
-        )}></div>
-      ))}
-    </div>
-  );
-}
+import SliderNavbar from '../elements/sliderNavbar';
+import SliderDots from '../elements/sliderDots';
 
 export default function SliderCard({slides = [], showNavbar = false, showDots = false}) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -70,8 +40,8 @@ export default function SliderCard({slides = [], showNavbar = false, showDots = 
         </div>
       </Swiper>
 
-      { showNavbar && <Navbar currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
-      { showDots && <Dots currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
+      { showNavbar && <SliderNavbar currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
+      { showDots && <SliderDots currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
     </div>
   );
 }

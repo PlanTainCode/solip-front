@@ -17,6 +17,9 @@ import 'swiper/css';
 import SliderCard from '../components/modules/sliderCard';
 import StepBlocks from '../components/modules/stepBlocks';
 import Employee from '../components/elements/employee';
+import SliderBanner from '../components/modules/sliderBanner';
+import ContactMap from '../components/modules/contactMap';
+import Form from '../components/modules/form';
 
 const team = [
   {
@@ -72,6 +75,21 @@ const blocks = [
   },
 ];
 
+const portfolio = [
+  {
+    image: work_1,
+    title: 'гостевой домик',
+    text: 'покрасили, облицевали, положили крышу',
+    link: '/projects/content',
+  },
+  {
+    image: work_1,
+    title: 'гостевой домик 2',
+    text: 'покрасили, облицевали, положили крышу 2',
+    link: '/projects/content',
+  },
+];
+
 export default function Home() {
   return (
     <MainLayout>
@@ -80,7 +98,7 @@ export default function Home() {
       </Head>
 
       <section className='relative text-silver rounded-b-3xl rounded-t-[40px] overflow-hidden h-[448px] lg:h-165 lg:rounded-t-[80px]' style={{transform: 'translate3d(0, 0, 0)'}}>
-        <Image src={banner} alt='banner' layout='fill' objectFit='cover' style={{transform: 'translate3d(0, 0, 0)'}}/>
+        <Image src={banner} alt='banner' layout='fill' objectFit='cover' style={{transform: 'translate3d(0, 0, 0)'}} placeholder='blur'/>
         <div className="absolute left-0 top-0 right-0 bottom-0 bg-black/50 lg:bg-black/40"></div>
         <div className="absolute left-0 top-0 right-0 bottom-0 pb-6 flex flex-col">
           <IconSolip/>
@@ -116,40 +134,7 @@ export default function Home() {
         <h2 className="t-h1 text-green">Наши работы</h2>
 
         <div className="mt-8 lg:mt-14">
-          <div className="h-115 overflow-hidden rounded-3xl relative lg:h-165">
-            <Image src={work_1} alt='Работа 1' layout='fill' objectFit='cover'/>
-            <div className="absolute left-0 top-0 w-full h-full bg-black/40"></div>
-            <div className="absolute left-0 top-14 right-0 border-t-2 border-silver">
-              <div className="w-1/3 h-2 bg-silver relative lg:h-2.5"></div>
-            </div>
-
-            <div className="absolute right-0 bottom-0 lg:static">
-              <div className={cn(
-                'text-right t-display-lg text-white -mb-8 -mr-3',
-                'lg:absolute lg:-bottom-[70px] lg:-left-3 lg:m-0 lg:pointer-events-none lg:text-left'
-              )}>01.</div>
-
-              <div className={cn(
-                'bg-silver rounded-tl-3xl relative px-6 pt-6 pb-4 w-75',
-                'lg:pt-7 lg:px-8 lg:pb-5 lg:absolute lg:w-112.5 lg:bottom-0 lg:right-0'
-              )}>
-                <p className="t-h2">гостевой домик</p>
-                <p className="t-24 mt-1">покрасили, облицевали, положили крышу</p>
-              </div>
-              <div className={cn(
-                'bg-silver px-6 pb-2 w-75',
-                'lg:absolute lg:left-8 lg:bottom-5 lg:w-80 lg:bg-transparent lg:p-0'
-              )}>
-                <Button>Подробнее</Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center mt-2 lg:mt-6">
-            <div className="w-2 h-2 mx-1 rounded-full border border-green bg-green"></div>
-            <div className="w-2 h-2 mx-1 rounded-full border border-green"></div>
-            <div className="w-2 h-2 mx-1 rounded-full border border-green"></div>
-          </div>
+          <SliderBanner slides={portfolio} showNavbar showDots/>
         </div>
 
         <div className="mt-7 lg:mt-10">
@@ -176,23 +161,8 @@ export default function Home() {
           <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0">
             <p className="t-24 lg:pr-28">Оставте свой номер и мы будем рады проконсультировать вас уже через 15 минут.</p>
 
-            <div className="mt-8 space-y-4 lg:mt-10 lg:space-y-5">
-              <input type="text" className='block w-full bg-white text-black rounded-lg px-5 py-4 text-16px lg:text-20px' placeholder='Имя' />
-              <input type="tel" className='block w-full bg-white text-black rounded-lg px-5 py-4 text-16px lg:text-20px' placeholder='+46 73 542 76 22' />
-
-              <Button color='black'>Консультация</Button>
-            </div>
-
-            <div className="mt-5 text-12px">
-              <p>Нажимая на кнопку, ты соглашаешься с Договором Публичной Оферты и обработкой своих персональных данных.</p>
-              <div className="mt-4">
-                <p>
-                  <a href="#" className="underline underline-offset-2">Договор Публичной Оферты</a>
-                </p>
-                <p>
-                  <a href="#" className="underline underline-offset-2">Политика конфиденциальности</a>
-                </p>
-              </div>
+            <div className="mt-8 lg:mt-10">
+              <Form orientation='v'/>
             </div>
           </div>
 
@@ -235,7 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='mt-20 mb-16 lg:mt-24 lg:mb-20'>
+      <section className='mt-20 lg:mt-24'>
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-10">
 
           <div className="lg:col-span-6 relative">
@@ -253,6 +223,10 @@ export default function Home() {
           </div>
 
         </div>
+      </section>
+
+      <section className="mt-16 mb-16 lg:mt-20 lg:mb-20">
+        <ContactMap/>
       </section>
     </MainLayout>
   )
