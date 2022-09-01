@@ -138,7 +138,7 @@ export default function Home() {
         </div>
 
         <div className="mt-7 lg:mt-10">
-          <Button color='black'>Остальные работы</Button>
+          <Button color='black' link='/projects'>Остальные работы</Button>
         </div>
       </section>
 
