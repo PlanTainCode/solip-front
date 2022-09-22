@@ -16,7 +16,11 @@ const menu = [
   { title: 'о нас', link: '/about' },
 ];
 
-const MenuLink = ({ title, link, onClick, router }) => {
+const fn = () => {
+  console.log('click');
+};
+
+const MenuLink = ({ title, link, onClick = fn, router }) => {
   if (link) {
 
     if (link === router.route) {
@@ -46,9 +50,9 @@ export default function Header() {
 
   return (
     <header className="h-12 lg:h-16">
-      <div className="fixed left-0 top-0 w-full z-30">
+      <div className={cn('fixed left-0 top-0 w-full z-30')}>
         <div className="container relative h-12 lg:h-24">
-          <button className='bg-white rounded-full flex items-center absolute pl-1 pr-2 text-16px font-medium right-6 top-1/2 -translate-y-1/2 lg:right-0' onClick={() => setShowMenu(true)}>
+          <button className='bg-white rounded-full flex items-center absolute pl-1 pr-2 text-16px font-medium right-6 top-1/2 -translate-y-1/2 scale-110 lg:right-10 xl:right-0' onClick={() => setShowMenu(true)}>
             <IconMenu className='w-6 h-6 mr-1'/>
             Menu
           </button>
@@ -61,16 +65,18 @@ export default function Header() {
           }
         )}>
           <div className="container flex items-center justify-between">
-            <ul className="flex gap-8 text-18px">
+            <ul className="flex flex-1 gap-8 text-20px text-green">
               {menu.map(({title, link}) =>
                 <MenuLink
                   key={title}
                   title={title}
                   link={link}
                   router={router}
-                  onClick={() => setShowMenu(false)}
                 />
               )}
+              <li className='hidden ml-auto mr-8 xl:block'>
+                <a href='tel:+46 73 542 76 22' className='hover:underline underline-offset-2'>+46 73 542 76 22</a>
+              </li>
             </ul>
             <button className='bg-white rounded-full p-1' onClick={() => setShowMenu(false)}>
               <IconClose className='w-6 h-6'/>

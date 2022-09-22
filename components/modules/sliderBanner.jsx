@@ -26,10 +26,10 @@ export default function SliderBanner({slides = [], showNavbar = false, showDots 
         speed={500}
         onSlideChangeTransitionStart={ ({activeIndex}) => setActiveSlideIndex(activeIndex) }
       >
-        {slides.map(({image, title, text, link}, index) =>
+        {slides.map(({imageUrl, title, text, link}, index) =>
           <SwiperSlide key={index}>
             <div className="h-115 overflow-hidden rounded-3xl relative lg:h-165">
-              <Image src={image} alt='Работа 1' layout='fill' objectFit='cover'/>
+              <Image src={imageUrl} alt='Работа 1' layout='fill' objectFit='cover' style={{transform: 'translate3d(0, 0, 0)'}}/>
               <div className="absolute left-0 top-0 w-full h-full bg-black/40"></div>
 
               <div className="absolute right-0 bottom-0 lg:static">
@@ -61,9 +61,10 @@ export default function SliderBanner({slides = [], showNavbar = false, showDots 
           <SlidePrevButton className='absolute left-0 -translate-y-1/2'/>
           <SlideNextButton className='absolute right-0 -translate-y-1/2'/>
         </div>
+
+        { showNavbar && <SliderNavbar currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
       </Swiper>
 
-      { showNavbar && <SliderNavbar currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
       { showDots && <SliderDots currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
     </div>
   );

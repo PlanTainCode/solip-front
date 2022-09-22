@@ -267,7 +267,7 @@
 
 @layer components {
   .container {
-    @apply px-6 mx-auto lg:max-w-6xl lg:px-0;
+    @apply px-6 mx-auto lg:max-w-6xl lg:px-10 xl:px-0;
   }
 
   .t-h1 {
@@ -295,6 +295,6 @@
   }
 
   .paragraph {
-    @apply before:inline-block before:w-8 before:h-[1px] before:bg-current before:align-middle before:mr-2 before:ml-0.5 lg:before:w-12 lg:before:mr-3;
+    @apply before:float-left before:w-8 before:h-[1px] before:mt-2 before:bg-current before:align-middle before:mr-2 before:ml-0.5 lg:before:w-12 lg:before:mr-3 lg:before:mt-3;
   }
 }

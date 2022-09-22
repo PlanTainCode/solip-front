@@ -11,6 +11,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ['localhost', 'res.cloudinary.com'],
+  },
 }
 
 module.exports = nextConfig

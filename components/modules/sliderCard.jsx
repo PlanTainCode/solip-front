@@ -20,10 +20,10 @@ export default function SliderCard({slides = [], showNavbar = false, showDots = 
         speed={500}
         onSlideChangeTransitionStart={ ({activeIndex}) => setActiveSlideIndex(activeIndex) }
       >
-        {slides.map(({image, title, text}, index) =>
+        {slides.map(({imageUrl, title, text}, index) =>
           <SwiperSlide key={index}>
-            <div className="h-100 relative lg:h-165">
-              <Image src={image} alt='1' className='rounded-3xl' layout='fill' objectFit='cover'/>
+            <div className="h-100 relative lg:h-165 style={{transform: 'translate3d(0, 0, 0)'}}">
+              <Image src={imageUrl} alt='1' className='rounded-3xl' layout='fill' objectFit='cover' style={{transform: 'translate3d(0, 0, 0)'}}/>
 
               {title && text && (
                 <div className="absolute w-[268px] bottom-0 right-0 bg-silver rounded-tl-3xl p-5 lg:w-112.5 lg:pt-7 lg:px-8 lg:pb-5">
@@ -38,9 +38,10 @@ export default function SliderCard({slides = [], showNavbar = false, showDots = 
           <SlidePrevButton className='absolute left-0 -translate-y-1/2'/>
           <SlideNextButton className='absolute right-0 -translate-y-1/2'/>
         </div>
+
+        { showNavbar && <SliderNavbar currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
       </Swiper>
 
-      { showNavbar && <SliderNavbar currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
       { showDots && <SliderDots currentNumber={activeSlideIndex + 1} countAllSlides={countAllSlides}/> }
     </div>
   );

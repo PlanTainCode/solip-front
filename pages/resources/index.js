@@ -1,37 +1,17 @@
 import Head from "next/head";
 import MainLayout from "../../components/layouts/mainLayout";
-import image from '../../public/images/project/image-1.jpg';
-import cn from "classnames";
 import ShortPost from "../../components/elements/shorPost";
+import { getImageUrl } from "../../lib/image";
+import { fetcher } from "../../lib/api";
+import cn from "classnames";
 
-const posts = [
-  {
-    image: image,
-    title: 'Заголовок новости 1',
-    description: 'Познакомьтесь с нашими сотрудниками. Каждый из них будет рад внести свой вклад в ваш ремонт. Мы подбираем сотрудников опираясь на их опыт, качество исполнения работ и готовность совершенствоваться в своей нише. Они помогут вам быстро реализовать даже самые смелые идеи на должном уровне профессионализма.',
-    link: '/resources/content',
-  },
-  {
-    image: image,
-    title: 'Заголовок новости 2',
-    description: 'Познакомьтесь с нашими сотрудниками. Каждый из них будет рад внести свой вклад в ваш ремонт. Мы подбираем сотрудников опираясь на их опыт, качество исполнения работ и готовность совершенствоваться в своей нише. Они помогут вам быстро реализовать даже самые смелые идеи на должном уровне профессионализма.',
-    link: '/resources/content',
-  },
-  {
-    image: image,
-    title: 'Заголовок новости 3',
-    description: 'Познакомьтесь с нашими сотрудниками. Каждый из них будет рад внести свой вклад в ваш ремонт. Мы подбираем сотрудников опираясь на их опыт, качество исполнения работ и готовность совершенствоваться в своей нише. Они помогут вам быстро реализовать даже самые смелые идеи на должном уровне профессионализма.',
-    link: '/resources/content',
-  },
-  {
-    image: image,
-    title: 'Заголовок новости 4',
-    description: 'Познакомьтесь с нашими сотрудниками. Каждый из них будет рад внести свой вклад в ваш ремонт. Мы подбираем сотрудников опираясь на их опыт, качество исполнения работ и готовность совершенствоваться в своей нише. Они помогут вам быстро реализовать даже самые смелые идеи на должном уровне профессионализма.',
-    link: '/resources/content',
-  },
-];
+const getResourceLinkBySlug = (slug) => {
+  return `/resources/${slug}`;
+};
 
-export default function Resources() {
+export default function Resources({ resources }) {
+  const posts = resources;
+
   return (
     <MainLayout>
       <Head>
@@ -39,14 +19,14 @@ export default function Resources() {
       </Head>
       <h1 className="t-h1 text-green">Полезные материалы</h1>
       <div className="mt-6 mb-16 grid grid-cols-1 gap-10 lg:mt-8 lg:mb-20 lg:grid-cols-6 lg:gap-y-14">
-        {posts.map(({image, title, description, link}, index) => (
+        {posts.map(({imageUrl, title, description, link}, index) => (
           <div className={cn({
             'col-span-full': index === 0,
-            'col-span-3': [1,2].includes(index),
-            'col-span-2': ![0,1,2].includes(index),
+            'lg:col-span-3': [1,2].includes(index),
+            'lg:col-span-2': ![0,1,2].includes(index),
           })} key={title}>
             <ShortPost
-              image={image}
+              imageUrl={imageUrl}
               title={title}
               description={description}
               link={link}
@@ -56,4 +36,25 @@ export default function Resources() {
       </div>
     </MainLayout>
   );
+}
+
+export async function getStaticProps() {
+  const response = await fetcher(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/resources?populate=image`
+  );
+
+  const resources = !response.data ? [] : response.data.map(({attributes}) => {
+    return {
+      imageUrl: getImageUrl(attributes.image.data.attributes.url),
+      title: attributes.title,
+      description: attributes.content,
+      link: getResourceLinkBySlug(attributes.slug)
+    }
+  })
+
+  return {
+    props: {
+      resources,
+    }
+  };
 }

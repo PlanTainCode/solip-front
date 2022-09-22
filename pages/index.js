@@ -20,38 +20,39 @@ import Employee from '../components/elements/employee';
 import SliderBanner from '../components/modules/sliderBanner';
 import ContactMap from '../components/modules/contactMap';
 import Form from '../components/modules/form';
+import { fetcher } from "../lib/api";
 
 const team = [
   {
     name: 'Зураб',
-    job: 'Прораб-плиточник',
+    position: 'Прораб-плиточник',
     image: human_1
   },
   {
     name: 'Александр',
-    job: 'Маляр',
+    position: 'Маляр',
     image: human_2
   },
   {
     name: 'Виктор',
-    job: 'Плиточник',
+    position: 'Плиточник',
     image: human_3
   },
 ];
 
 const slides = [
   {
-    image: advantage_1_1,
+    imageUrl: advantage_1_1,
     title: 'Дом ХХХХ',
     text: 'срок реалтзации ХХ дней',
   },
   {
-    image: advantage_2_1,
+    imageUrl: advantage_2_1,
     title: 'Дом ХХХХ',
     text: 'срок реалтзации ХХ дней',
   },
   {
-    image: advantage_3_1,
+    imageUrl: advantage_3_1,
     title: 'Дом ХХХХ',
     text: 'срок реалтзации ХХ дней',
   },
@@ -77,20 +78,22 @@ const blocks = [
 
 const portfolio = [
   {
-    image: work_1,
+    imageUrl: work_1,
     title: 'гостевой домик',
     text: 'покрасили, облицевали, положили крышу',
     link: '/projects/content',
   },
   {
-    image: work_1,
+    imageUrl: work_1,
     title: 'гостевой домик 2',
     text: 'покрасили, облицевали, положили крышу 2',
     link: '/projects/content',
   },
 ];
 
-export default function Home() {
+export default function Home({ contactData }) {
+  const contacts = contactData.attributes;
+
   return (
     <MainLayout>
       <Head>
@@ -101,7 +104,7 @@ export default function Home() {
         <Image src={banner} alt='banner' layout='fill' objectFit='cover' style={{transform: 'translate3d(0, 0, 0)'}} placeholder='blur'/>
         <div className="absolute left-0 top-0 right-0 bottom-0 bg-black/50 lg:bg-black/40"></div>
         <div className="absolute left-0 top-0 right-0 bottom-0 pb-6 flex flex-col">
-          <IconSolip/>
+          <IconSolip style={{transform: 'translate3d(0, 0, 0)'}}/>
           <div className="px-5 flex-1 flex flex-col lg:px-8">
             <p className="t-40 mt-4 lg:w-107.5">ремонт домов и квартир в Гётеборге</p>
             <p className="paragraph t-24 mt-5 lg:absolute lg:right-8 lg:bottom-8 lg:w-[58%]">Ваш комфорт – наша главная задача. Мы поможем качественно и быстро воплотить ваши самые смелые идеи, применяя высокие стандарты качества и экологичности. Оперативная разработка проекта по вашему вкусу и начало работ в удобное для вас время.</p>
@@ -123,18 +126,25 @@ export default function Home() {
       </section>
 
       <section className='mt-14 lg:mt-20'>
+        <p className="paragraph t-24">У вас уже есть проект, и вы хотите узнать его стоимость? Загрузите имеющуюся информацию и мы поможем вам с предварительным расчетом.</p>
+        <div className="mt-6">
+          <Button link='/services' color='green'>Все услуги</Button>
+        </div>
+      </section>
+
+      <section className='mt-14 lg:mt-24'>
         <div className="mb-8 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:mb-14">
           <h2 className="t-h1 text-green col-span-8">Наши преимущества</h2>
         </div>
 
-        <StepBlocks blocks={blocks}/>
+        <StepBlocks blocks={blocks} betweenOffset='-16'/>
       </section>
 
       <section className="mt-14 lg:mt-20">
         <h2 className="t-h1 text-green">Наши работы</h2>
 
         <div className="mt-8 lg:mt-14">
-          <SliderBanner slides={portfolio} showNavbar showDots/>
+          <SliderBanner slides={portfolio} showNavbar/>
         </div>
 
         <div className="mt-7 lg:mt-10">
@@ -219,15 +229,33 @@ export default function Home() {
           </div>
 
           <div className="mt-8 lg:mt-0 lg:col-span-6">
-            <SliderCard slides={slides} showDots/>
+            <SliderCard slides={slides}/>
           </div>
 
         </div>
       </section>
 
       <section className="mt-16 mb-16 lg:mt-20 lg:mb-20">
-        <ContactMap/>
+        <ContactMap
+          companyName={contacts.company_name}
+          address={contacts.address}
+          phone={contacts.phone}
+          email={contacts.email}
+          schedule={contacts.schedule}
+        />
       </section>
     </MainLayout>
   )
+}
+
+export async function getStaticProps() {
+  const contactResponse = await fetcher(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/contact-page`
+  );
+
+  return {
+    props: {
+      contactData: contactResponse.data,
+    }
+  };
 }

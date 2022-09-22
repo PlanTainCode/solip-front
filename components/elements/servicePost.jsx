@@ -4,7 +4,7 @@ export default function ServicePost({ title, description, price, image }) {
   return (
     <div className="relative">
       <div className="relative h-56">
-        <Image alt='' src={image} layout='fill' className="rounded-3xl"/>
+        <Image alt='' src={image} layout='fill' objectFit="cover" className="rounded-3xl"/>
       </div>
       <p className="font-caption text-16px mt-6 lg:mt-7">{title}</p>
       <p className="font-caption text-16px mt-3">{price}</p>

@@ -62,10 +62,10 @@ export default function Footer() {
 
           <ul className='space-y-2 t-24 text-silver mt-8 lg:mt-0 lg:ml-auto lg:mr-10 lg:text-24px'>
             <li>
-              <a href="#" className="hover:underline underline-offset-2">+46 73 542 76 22</a>
+              <a href="tel:+46 73 542 76 22" className="hover:underline underline-offset-2">+46 73 542 76 22</a>
             </li>
             <li>
-              <a href="#" className="hover:underline underline-offset-2">info@solipbygg.se</a>
+              <a href="mailto:info@solipbygg.se" className="hover:underline underline-offset-2">info@solipbygg.se</a>
             </li>
             <li>пн-пт 10:00-18:00</li>
             <li>
