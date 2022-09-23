@@ -32,7 +32,7 @@ const MenuLink = ({ title, link, onClick = fn, router }) => {
     }
     return (
       <li>
-        <Link href={link}>
+        <Link href={link} shallow>
           <a className='hover:underline underline-offset-2' onClick={onClick}>{title}</a>
         </Link>
       </li>
@@ -47,6 +47,7 @@ const MenuLink = ({ title, link, onClick = fn, router }) => {
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
+  console.log('render Header');
 
   return (
     <header className="h-12 lg:h-16">
