@@ -66,6 +66,7 @@ export async function getStaticProps() {
         title: pageAttributes.title,
         content: marked.parse(pageAttributes.content)
       }
-    }
+    },
+    revalidate: 10
   };
 }

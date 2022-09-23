@@ -96,6 +96,7 @@ export async function getStaticProps() {
     props: {
       servicesData: servicesResponse.data,
       categoriesData: serviceСategoriesResponse.data,
-    }
+    },
+    revalidate: 10
   };
 }

@@ -65,6 +65,7 @@ export async function getStaticProps({ params }) {
         imageUrl: getImageUrl(data.image.data.attributes.url),
         blocks
       },
-    }
+    },
+    revalidate: 10
   };
 }

@@ -57,6 +57,7 @@ export async function getStaticProps() {
           link: getProjectLinkBySlug(attributes.slug)
         }
       })
-    }
+    },
+    revalidate: 10
   };
 }
