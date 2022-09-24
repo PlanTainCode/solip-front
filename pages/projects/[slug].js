@@ -65,6 +65,6 @@ export async function getStaticProps({ params }) {
         blocks
       },
     },
-    revalidate: 10
+    revalidate: 1
   };
 }

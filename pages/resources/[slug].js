@@ -2,7 +2,7 @@ import Image from "next/image";
 import image from '../../public/images/project/image-1.jpg';
 import MainLayout from "../../components/layouts/mainLayout";
 import Head from "next/head";
-import { generateBlocks } from "../../lib/post";
+import { generateBlocks, renderBlock } from "../../lib/post";
 import { marked } from 'marked';
 import { fetcher } from "../../lib/api";
 import { getImageUrl } from "../../lib/image";
@@ -66,6 +66,6 @@ export async function getStaticProps({ params }) {
         blocks
       },
     },
-    revalidate: 10
+    revalidate: 1
   };
 }
