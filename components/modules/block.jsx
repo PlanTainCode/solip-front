@@ -1,5 +1,6 @@
 import SliderCard from "./sliderCard";
 import cn from 'classnames';
+import { marked } from 'marked';
 
 const getDesignNumber = (number) => {
   const zero = (number < 10) ? '0' : '';
@@ -14,7 +15,7 @@ const Block = ({ title, text, slides, number }) => (
       <div className="pr-10">
         {number && <p className="t-display text-green">{getDesignNumber(number)}</p>}
         {title && <p className="t-h2">{title}</p>}
-        {text && <div className='paragraph t-24 mt-5 lg:mt-6' dangerouslySetInnerHTML={{__html: text}}/>}
+        {text && <div className='paragraph t-24 mt-5 lg:mt-6' dangerouslySetInnerHTML={{__html: marked.parse(text)}}/>}
       </div>
     </div>
 
