@@ -7,7 +7,7 @@ import { generateBlocks, renderBlock } from "../../lib/post";
 import { getImageUrl } from "../../lib/image";
 
 export default function NewsPost({ news }) {
-  const { title, content, imageUrl, blocks } = news;
+  const { title = '', content, imageUrl, blocks } = news;
 
   return (
     <MainLayout>
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
     }
   });
 
-  return { paths, fallback: true }
+  return { paths, fallback: 'blocking' }
 }
 
 export async function getStaticProps({ params }) {
