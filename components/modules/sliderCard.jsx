@@ -8,7 +8,7 @@ import 'swiper/css';
 import SliderNavbar from '../elements/sliderNavbar';
 import SliderDots from '../elements/sliderDots';
 
-export default function SliderCard({slides = [], showNavbar = false, showDots = false}) {
+export default function SliderCard({slides = [], showNavbar = false, showDots = false, swiperProps={}}) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const countAllSlides = slides.length;
 
@@ -19,6 +19,7 @@ export default function SliderCard({slides = [], showNavbar = false, showDots = 
         spaceBetween={20}
         speed={500}
         onSlideChangeTransitionStart={ ({activeIndex}) => setActiveSlideIndex(activeIndex) }
+        {...swiperProps}
       >
         {slides.map(({imageUrl, title, text}, index) =>
           <SwiperSlide key={index}>

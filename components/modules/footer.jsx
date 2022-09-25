@@ -1,6 +1,7 @@
 import cn from "classnames";
 import Link from "next/link";
 import Button from "../elements/button";
+import Form from "./form";
 
 function spliceIntoChunks(arr, chunkSize = 2) {
   const res = [];
@@ -48,9 +49,9 @@ export default function Footer() {
         'rounded-3xl bg-green text-silver px-5 py-6 mt-auto',
         'lg:flex lg:justify-between lg:items-center lg:px-8 lg:py-7'
       )}>
-        <p className="paragraph t-24 max-w-[680px]">Вам нужно построить дом или помещение? Solip может помочь вам с реализацией ваших задумок – с этапа проекта и получения одобрения до сдачи в эксплуатацию.</p>
+        <p className="paragraph t-24 max-w-[640px]">Вам нужно построить дом или помещение? Solip может помочь вам с реализацией ваших задумок – с этапа проекта и получения одобрения до сдачи в эксплуатацию.</p>
         <div className="mt-6 lg:mt-0 lg:w-100">
-          <Button color='black'>Перейти</Button>
+          <Form orientation='v' short buttonText={'Отправить'}/>
         </div>
       </section>
 

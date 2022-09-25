@@ -18,28 +18,35 @@ import ContactMap from '../components/modules/contactMap';
 import Form from '../components/modules/form';
 import { fetcher } from "../lib/api";
 import { getImageUrl } from '../lib/image';
+import SliderReview from '../components/modules/sliderReview';
 
 const slides = [
   {
     imageUrl: advantage_1_1,
-    title: 'Дом ХХХХ',
-    text: 'срок реалтзации ХХ дней',
+    imageTitle: 'Дом ХХХХ',
+    imageText: 'срок реалтзации ХХ дней',
+    title: 'Катарина Ланц',
+    content: 'Обратилась Solip для ремонта своей первой собственной квартиры. Ализан быстро составил проект и команда приступила к работе. Вот уже три месяца я живу в квартире мечты и полностью довольна тем, что сделала выбор в пользу именно этой компании. Им удалось воплотить мои пожелания в жизнь.'
   },
   {
     imageUrl: advantage_2_1,
-    title: 'Дом ХХХХ',
-    text: 'срок реалтзации ХХ дней',
+    imageTitle: 'Дом ХХХХ',
+    imageText: 'срок реалтзации ХХ дней',
+    title: 'Катарина Ланц',
+    content: 'Обратилась Solip для ремонта своей первой собственной квартиры. Ализан быстро составил проект и команда приступила к работе. Вот уже три месяца я живу в квартире мечты и полностью довольна тем, что сделала выбор в пользу именно этой компании. Им удалось воплотить мои пожелания в жизнь.'
   },
   {
     imageUrl: advantage_3_1,
-    title: 'Дом ХХХХ',
-    text: 'срок реалтзации ХХ дней',
+    imageTitle: 'Дом ХХХХ',
+    imageText: 'срок реалтзации ХХ дней',
+    title: 'Катарина Ланц',
+    content: 'Обратилась Solip для ремонта своей первой собственной квартиры. Ализан быстро составил проект и команда приступила к работе. Вот уже три месяца я живу в квартире мечты и полностью довольна тем, что сделала выбор в пользу именно этой компании. Им удалось воплотить мои пожелания в жизнь.'
   },
 ];
 
 export default function Home({ mainData, contactData, employees }) {
   const contacts = contactData.attributes;
-  const { firstscreen, services, team, projects, steps, title_1 } = mainData.attributes;
+  const { firstscreen, form_1, services, team, projects, steps, title_1, title_2, reviews } = mainData.attributes;
   const portfolio = projects.map(({ title, content, image, project }) => {
     return {
       imageUrl: getImageUrl(image.data.attributes.url),
@@ -57,6 +64,16 @@ export default function Home({ mainData, contactData, employees }) {
         text: content,
         imageUrl: getImageUrl(image.data.attributes.url)
       }))
+    }
+  });
+
+  const slidesReview = reviews.map(({ image, imageText, imageTitle, title, content }) => {
+    return {
+      imageUrl: getImageUrl(image.data.attributes.url),
+      imageTitle,
+      imageText,
+      title,
+      content
     }
   });
 
@@ -82,15 +99,17 @@ export default function Home({ mainData, contactData, employees }) {
         </div>
       </section>
 
-      <section className={cn(
-        'rounded-3xl border border-black px-5 py-6 mt-14',
-        'lg:flex lg:justify-between lg:items-center lg:border-2 lg:px-8 lg:py-7 lg:mt-20'
-      )}>
-        <p className="paragraph t-24 lg:max-w-[600px]">У вас уже есть проект, и вы хотите узнать его стоимость? Загрузите имеющуюся информацию и мы поможем вам с предварительным расчетом.</p>
-        <div className="mt-6 lg:mt-0 lg:w-100">
-          <Button color='green'>Загрузить</Button>
-        </div>
-      </section>
+      {form_1 && (
+        <section className={cn(
+          'rounded-3xl border border-black px-5 py-6 mt-14',
+          'lg:flex lg:justify-between lg:items-center lg:border-2 lg:px-8 lg:py-7 lg:mt-20'
+        )}>
+          <p className="paragraph t-24 lg:max-w-[600px]">{form_1.content}</p>
+          <div className="mt-6 lg:mt-0 lg:w-100">
+            <Form orientation='v' short buttonText={form_1.button_text}/>
+          </div>
+        </section>
+      )}
 
       <section className='mt-14 lg:mt-20'>
         {services.content && <p className="paragraph t-24">{services.content}</p>}
@@ -131,9 +150,9 @@ export default function Home({ mainData, contactData, employees }) {
             <h3 className="t-h1 text-green">У вас остались вопросы?</h3>
             <div className="mt-4 lg:mt-12">
               <p className="t-24 paragraph">Для составления плана работ по готовому проекту, пожалуйста, загрузите его нажав кнопку ниже. И мы свяжемся с вами для обсуждения деталей.</p>
-              <div className="mt-7 lg:mt-5">
+              {/* <div className="mt-7 lg:mt-5">
                 <Button color='green'>Загрузить</Button>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -141,7 +160,7 @@ export default function Home({ mainData, contactData, employees }) {
             <p className="t-24 lg:pr-28">Оставте свой номер и мы будем рады проконсультировать вас уже через 15 минут.</p>
 
             <div className="mt-8 lg:mt-10">
-              <Form orientation='v'/>
+              <Form orientation='v' showDisclaimer/>
             </div>
           </div>
 
@@ -184,25 +203,11 @@ export default function Home({ mainData, contactData, employees }) {
         </div>
       </section>
 
-      <section className='mt-20 lg:mt-24'>
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-10">
-
-          <div className="lg:col-span-6 relative">
-            <h2 className="t-h1 text-green">Отзывы довольных клиентов</h2>
-
-            <div className="mt-8 lg:absolute lg:bottom-10 lg:left-0 lg:w-full lg:mt-0 lg:flex lg:flex-col-reverse">
-              <h3 className="t-h2 mt-6">Катарина Ланц</h3>
-
-              <p className="paragraph t-24 mt-4 lg:pr-16 lg:mt-5">Обратилась Solip для ремонта своей первой собственной квартиры. Ализан быстро составил проект и команда приступила к работе. Вот уже три месяца я живу в квартире мечты и полностью довольна тем, что сделала выбор в пользу именно этой компании. Им удалось воплотить мои пожелания в жизнь.</p>
-            </div>
-          </div>
-
-          <div className="mt-8 lg:mt-0 lg:col-span-6">
-            <SliderCard slides={slides}/>
-          </div>
-
-        </div>
-      </section>
+      {!!reviews.length && (
+        <section className='mt-20 lg:mt-24'>
+          <SliderReview slides={slidesReview} title={title_2}/>
+        </section>
+      )}
 
       <section className="mt-16 mb-16 lg:mt-20 lg:mb-20">
         <ContactMap

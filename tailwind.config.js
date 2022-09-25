@@ -14,6 +14,7 @@ module.exports = {
       grey: '#9C9C9C',
       'light-grey': '#FAFAFA',
       silver: '#EBEBEB',
+      red: '#FF6C6C'
     },
     fontFamily: {
       'display': "'Neue Metana Next Outline', Arial, sans-serif",
