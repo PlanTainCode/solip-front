@@ -49,22 +49,6 @@ export default function SliderReview({ slides, title = '' }) {
               </SwiperSlide>
             )}
           </Swiper>
-
-          {/* <Swiper
-            autoHeight={true}
-            spaceBetween={20}
-            speed={500}
-          >
-            {slides_1.map(({title, content}, index) =>
-              <SwiperSlide key={index}>
-                <div className="lg:flex lg:flex-col-reverse lg:h-full">
-                  <h3 className="t-h2 mt-6">{title}</h3>
-
-                  <div className="paragraph t-24 mt-4 lg:pr-16 lg:mt-5" dangerouslySetInnerHTML={{__html: marked.parse(content)}}/>
-                </div>
-              </SwiperSlide>
-            )}
-          </Swiper> */}
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconMenu from '../icons/menu.svg';
 import IconClose from '../icons/close.svg';
 import cn from 'classnames';
@@ -16,9 +16,7 @@ const menu = [
   { title: 'о нас', link: '/about' },
 ];
 
-const fn = () => {
-  console.log('click');
-};
+const fn = () => {};
 
 const MenuLink = ({ title, link, onClick = fn, router }) => {
   if (link) {
@@ -45,15 +43,42 @@ const MenuLink = ({ title, link, onClick = fn, router }) => {
 };
 
 export default function Header() {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showDesktopMenu, setShowDesktopMenu] = useState(true);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
-  console.log('render Header');
+
+  const controlNavbar = () => {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > lastScrollY) {
+        setShowDesktopMenu(false);
+      }
+
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+
+      // cleanup function
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
 
   return (
     <header className="h-12 lg:h-16">
       <div className={cn('fixed left-0 top-0 w-full z-30')}>
         <div className="container relative h-12 lg:h-24">
-          <button className='bg-white rounded-full flex items-center absolute pl-1 pr-2 text-16px font-medium right-6 top-1/2 -translate-y-1/2 scale-110 lg:right-10 xl:right-0' onClick={() => setShowMenu(true)}>
+          <button
+            className='bg-white rounded-full flex items-center absolute pl-1 pr-2 text-16px font-medium right-6 top-1/2 -translate-y-1/2 scale-110 lg:right-10 xl:right-0'
+            onClick={() => {
+              setShowDesktopMenu(true);
+              setShowMobileMenu(true);
+            }}>
             <IconMenu className='w-6 h-6 mr-1'/>
             Menu
           </button>
@@ -61,8 +86,8 @@ export default function Header() {
         <div className={cn(
           'hidden absolute left-0 top-0 right-0 bottom-0 bg-light-grey rounded-full lg:flex items-center transition-all ease',
           {
-            'duration-200': showMenu,
-            'opacity-0 pointer-events-none -translate-y-8 duration-150': !showMenu,
+            'duration-200': showDesktopMenu,
+            'opacity-0 pointer-events-none -translate-y-8 duration-150': !showDesktopMenu,
           }
         )}>
           <div className="container flex items-center justify-between">
@@ -79,7 +104,7 @@ export default function Header() {
                 <a href='tel:+46 73 542 76 22' className='hover:underline underline-offset-2'>+46 73 542 76 22</a>
               </li>
             </ul>
-            <button className='bg-white rounded-full p-1' onClick={() => setShowMenu(false)}>
+            <button className='bg-white rounded-full p-1' onClick={() => setShowDesktopMenu(false)}>
               <IconClose className='w-6 h-6'/>
             </button>
           </div>
@@ -89,13 +114,13 @@ export default function Header() {
       <div className={cn(
         'fixed left-0 top-0 right-0 bottom-0 z-30 bg-silver transition-all duration-300 overflow-y-auto lg:hidden',
         {
-          '-translate-x-4 opacity-0 pointer-events-none': !showMenu,
+          '-translate-x-4 opacity-0 pointer-events-none': !showMobileMenu,
         }
       )}>
         <div className="container pt-2 pb-10">
           <div className="relative">
             <div className="absolute top-0 right-0">
-              <button className='bg-white rounded-full p-1' onClick={() => setShowMenu(false)}>
+              <button className='bg-white rounded-full p-1' onClick={() => setShowMobileMenu(false)}>
                 <IconClose className='w-6 h-6'/>
               </button>
             </div>
@@ -107,7 +132,7 @@ export default function Header() {
                   title={title}
                   link={link}
                   router={router}
-                  onClick={() => setShowMenu(false)}
+                  onClick={() => setShowMobileMenu(false)}
                 />
               )}
             </ul>
@@ -121,6 +146,13 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      <div className={cn(
+        'hidden fixed left-0 top-0 right-0 bottom-0 z-10',
+        {
+          'lg:block': showDesktopMenu
+        }
+      )} onClick={() => setShowDesktopMenu(false)}/>
     </header>
   );
 }

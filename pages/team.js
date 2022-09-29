@@ -55,7 +55,6 @@ export async function getStaticProps() {
   const pageResponse = await fetcher(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/team-page`
   );
-  console.log(pageResponse);
 
   const pageAttributes = pageResponse.data.attributes;
 
