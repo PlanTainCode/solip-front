@@ -15,9 +15,9 @@ export default function Resources({ resources }) {
   return (
     <MainLayout>
       <Head>
-        <title>Полезные материалы</title>
+        <title>Användbar information</title>
       </Head>
-      <h1 className="t-h1 text-green">Полезные материалы</h1>
+      <h1 className="t-h1 text-green">Användbar information</h1>
       <div className="mt-6 mb-16 grid grid-cols-1 gap-10 lg:mt-8 lg:mb-20 lg:grid-cols-6 lg:gap-y-14">
         {posts.map(({imageUrl, title, description, link}, index) => (
           <div className={cn({

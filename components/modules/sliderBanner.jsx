@@ -50,7 +50,7 @@ export default function SliderBanner({slides = [], showNavbar = false, showDots 
                     'bg-silver px-6 pb-2 w-75',
                     'lg:absolute lg:left-8 lg:bottom-5 lg:w-80 lg:bg-transparent lg:p-0'
                   )}>
-                    <Button link={link}>Подробнее</Button>
+                    <Button link={link}>Mer</Button>
                   </div>
                 )}
               </div>

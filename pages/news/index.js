@@ -16,9 +16,9 @@ export default function News({ news }) {
   return (
     <MainLayout>
       <Head>
-        <title>Новости</title>
+        <title>Nyheter</title>
       </Head>
-      <h1 className="t-h1 text-green">Новости</h1>
+      <h1 className="t-h1 text-green">Nyheter</h1>
       <div className="mt-6 mb-16 grid grid-cols-1 gap-10 lg:mt-8 lg:mb-20 lg:grid-cols-6 lg:gap-y-14">
         {posts.map(({imageUrl, title, description, link}, index) => (
           <div className={cn({

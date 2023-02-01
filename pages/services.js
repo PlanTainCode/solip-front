@@ -48,10 +48,10 @@ export default function Services({servicesData, categoriesData}) {
   return (
     <MainLayout>
       <Head>
-        <title>Услуги</title>
+        <title>Tjänster</title>
       </Head>
 
-      <h1 className="t-h1 text-green">Услуги</h1>
+      <h1 className="t-h1 text-green">Tjänster</h1>
 
       <div className="overflow-x-auto mt-10 -mx-6 lg:mt-12">
         <div className="flex px-6">

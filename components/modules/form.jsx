@@ -61,7 +61,7 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
           <>
             <Input
               type='text'
-              placeholder="Имя"
+              placeholder="namn"
               value={name}
               onChange={setName}
               error={errorName}
@@ -74,11 +74,11 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
             />
           </>
         )}
-        <Button color='black' onClick={processing}>{buttonText || 'Консультация'}</Button>
+        <Button color='black' onClick={processing}>{buttonText || 'Lämna en förfrågan'}</Button>
       </div>
       {showDisclaimer &&
         <div className="mt-5 text-12px">
-          <p>Нажимая на кнопку, ты соглашаешься с <a href="#" className="underline underline-offset-2">Договором Публичной Оферты</a> и <a href="#" className="underline underline-offset-2">обработкой своих персональных данных</a>.</p>
+          <p>Genom att klicka på knappen godkänner du <a href="#" className="underline underline-offset-2">avtalet om offentligt erbjudande</a> och <a href="#" className="underline underline-offset-2">behandlingen av dina personuppgifter</a>.</p>
         </div>
       }
 
@@ -89,9 +89,9 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
         }
       )}>
         <div className="bg-silver rounded-3xl px-6 py-8 max-w-2xl lg:pt-24">
-          <p className="t-h1 text-green text-center">Успешно отправлено</p>
+          <p className="t-h1 text-green text-center">har skickats</p>
           <div className="mt-8 lg:mt-16">
-            <Button color="green" onClick={() => setShowSuccessPopup(false)}>Закрыть</Button>
+            <Button color="green" onClick={() => setShowSuccessPopup(false)}>stänga</Button>
           </div>
         </div>
       </div>

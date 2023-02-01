@@ -7,13 +7,13 @@ import Form from './form';
 import { useRouter } from 'next/router';
 
 const menu = [
-  { title: 'главная', link: '/' },
-  { title: 'услуги', link: '/services' },
-  { title: 'портфолио', link: '/projects' },
-  { title: 'контакты', link: '/contacts' },
-  { title: 'новости', link: '/news' },
-  { title: 'полезные материалы', link: '/resources' },
-  { title: 'о нас', link: '/about' },
+  { title: 'Huvudsidan', link: '/' },
+  { title: 'tjänster', link: '/services' },
+  { title: 'våra arbeten', link: '/projects' },
+  { title: 'kontakter', link: '/contacts' },
+  { title: 'nyheter och kampanjer', link: '/news' },
+  { title: 'användbar information', link: '/resources' },
+  { title: 'om oss', link: '/about' },
 ];
 
 const fn = () => {};
