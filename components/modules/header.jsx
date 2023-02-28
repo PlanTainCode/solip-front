@@ -7,13 +7,13 @@ import Form from './form';
 import { useRouter } from 'next/router';
 
 const menu = [
-  { title: 'главная', link: '/' },
-  { title: 'услуги', link: '/services' },
-  { title: 'портфолио', link: '/projects' },
-  { title: 'контакты', link: '/contacts' },
-  { title: 'новости', link: '/news' },
-  { title: 'полезные материалы', link: '/resources' },
-  { title: 'о нас', link: '/about' },
+  { title: 'Hem', link: '/' },
+  { title: 'alla tjänster', link: '/services' },
+  { title: 'våra arbeten', link: '/projects' },
+  { title: 'kontakter', link: '/contacts' },
+  { title: 'nyheter och kampanjer', link: '/news' },
+  { title: 'användbar information', link: '/resources' },
+  { title: 'om oss', link: '/about' },
 ];
 
 const fn = () => {};
@@ -43,36 +43,55 @@ const MenuLink = ({ title, link, onClick = fn, router }) => {
 };
 
 export default function Header() {
-  const [showDesktopMenu, setShowDesktopMenu] = useState(true);
+  const [showDesktopMenu, setShowDesktopMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
 
-  const controlNavbar = () => {
-    if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY) {
-        setShowDesktopMenu(false);
-      }
-
-      setLastScrollY(window.scrollY);
-    }
+  // Отслеживание по скроллу
+  const handleScroll = () => {
+    setLastScrollY(window.scrollY);
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-      // cleanup function
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
+  const classHeader = () => {
+    if (lastScrollY < 50 || showDesktopMenu === true) {
+        return 'hidden absolute left-0 top-0 right-0 bottom-0 bg-light-grey rounded-full lg:flex items-center transition-all ease duration-200';
+    } else  {
+        return 'hidden absolute left-0 top-0 right-0 bottom-0 bg-light-grey rounded-full lg:flex items-center transition-all ease opacity-0 pointer-events-none -translate-y-8 duration-150';
     }
-  }, [lastScrollY]);
+  }
+  // console.log(lastScrollY)
+
+  // const controlNavbar = () => {
+  //   if (typeof window !== 'undefined') {
+  //     if (window.scrollY > lastScrollY) {
+  //       setShowDesktopMenu(false);
+  //     }
+
+  //     setLastScrollY(window.scrollY);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('scroll', controlNavbar);
+
+  //     // cleanup function
+  //     return () => {
+  //       window.removeEventListener('scroll', controlNavbar);
+  //     };
+  //   }
+  // }, [lastScrollY]);
 
   return (
-    <header className="h-12 lg:h-16">
+    <header className="h-12 lg:h-16 mb-8">
       <div className={cn('fixed left-0 top-0 w-full z-30')}>
-        <div className="container relative h-12 lg:h-24">
+        <div className="container relative h-12 lg:h-20">
           <button
             className='bg-white rounded-full flex items-center absolute pl-1 pr-2 text-16px font-medium right-6 top-1/2 -translate-y-1/2 scale-110 lg:right-10 xl:right-0'
             onClick={() => {
@@ -83,15 +102,18 @@ export default function Header() {
             Menu
           </button>
         </div>
-        <div className={cn(
-          'hidden absolute left-0 top-0 right-0 bottom-0 bg-light-grey rounded-full lg:flex items-center transition-all ease',
-          {
-            'duration-200': showDesktopMenu,
-            'opacity-0 pointer-events-none -translate-y-8 duration-150': !showDesktopMenu,
-          }
-        )}>
+        <div 
+        // className={cn(
+        //   'hidden absolute left-0 top-0 right-0 bottom-0 bg-light-grey rounded-full lg:flex items-center transition-all ease',
+        //   {
+        //     'duration-200': showDesktopMenu,
+        //     'opacity-0 pointer-events-none -translate-y-8 duration-150': !showDesktopMenu,
+        //   }
+        // )}
+        className={classHeader()}
+        >
           <div className="container flex items-center justify-between">
-            <ul className="flex flex-1 gap-8 text-20px text-green">
+            <ul className="flex flex-1 gap-8 text-16px text-green">
               {menu.map(({title, link}) =>
                 <MenuLink
                   key={title}

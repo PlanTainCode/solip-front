@@ -12,7 +12,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['localhost', 'res.cloudinary.com'],
+    domains: ['solipadmin.tech'],
   },
 }
 

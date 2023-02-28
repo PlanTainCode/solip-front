@@ -24,7 +24,7 @@ export default function Team({ pageData }) {
           schedule={schedule}
         />
         <p className="mt-10 t-24 lg:w-1/2 lg:mt-6">
-          Оставте свой номер и мы будем рады проконсультировать вас уже через 15 минут.
+          Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.
         </p>
 
         <div className="mt-4 lg:mt-5">

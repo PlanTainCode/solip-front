@@ -48,13 +48,16 @@ export default function Home({ mainData, contactData, employees }) {
   const contacts = contactData.attributes;
   const { firstscreen, form_1, services, team, projects, steps, title_1, title_2, reviews } = mainData.attributes;
   const portfolio = projects.map(({ title, content, image, project }) => {
+    // console.log(image.data?.attributes)
     return {
-      imageUrl: getImageUrl(image.data.attributes.url),
+      imageUrl: getImageUrl(image.data?.attributes.url),
       title,
       text: content,
-      link: `/projects/${project.data.attributes.slug}`
+      link: `/projects/${project.data?.attributes.slug}`
     }
   });
+
+
   const blocks = steps.map(({ title, description, slider }) => {
     return {
       title,
@@ -77,7 +80,6 @@ export default function Home({ mainData, contactData, employees }) {
     }
   });
 
-  console.log(mainData);
   return (
     <MainLayout>
       <Head>
@@ -93,13 +95,13 @@ export default function Home({ mainData, contactData, employees }) {
             {firstscreen.text_1 && <p className="t-40 mt-4 lg:w-107.5">{firstscreen.text_1}</p>}
             {<p className="paragraph t-24 mt-5 lg:absolute lg:right-8 lg:bottom-8 lg:w-[58%]">{firstscreen.text_2}</p>}
             <div className="mt-auto lg:absolute lg:left-8 lg:bottom-8 lg:w-80">
-              {firstscreen.button_text && <Button link='/about'>{firstscreen.button_text}</Button>}
+              {firstscreen.button_text && <Button link='/contacts'>{firstscreen.button_text}</Button>}
             </div>
           </div>
         </div>
       </section>
 
-      {form_1 && (
+      {/* {form_1 && (
         <section className={cn(
           'rounded-3xl border border-black px-5 py-6 mt-14',
           'lg:flex lg:justify-between lg:items-center lg:border-2 lg:px-8 lg:py-7 lg:mt-20'
@@ -109,16 +111,16 @@ export default function Home({ mainData, contactData, employees }) {
             <Form orientation='v' short buttonText={form_1.button_text}/>
           </div>
         </section>
-      )}
+      )} */}
 
-      <section className='mt-14 lg:mt-20'>
+      {/* <section className='mt-14 lg:mt-20'>
         {services.content && <p className="paragraph t-24">{services.content}</p>}
         {services.button_text && (
           <div className="mt-6">
             <Button link='/services' color='green'>{services.button_text}</Button>
           </div>
         )}
-      </section>
+      </section> */}
 
       <section className='mt-14 lg:mt-24'>
         <div className="mb-8 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:mb-14">
@@ -129,14 +131,14 @@ export default function Home({ mainData, contactData, employees }) {
       </section>
 
       <section className="mt-14 lg:mt-20">
-        <h2 className="t-h1 text-green">Наши работы</h2>
+        <h2 className="t-h1 text-green">Våra arbeten</h2>
 
         <div className="mt-8 lg:mt-14">
           <SliderBanner slides={portfolio} showNavbar/>
         </div>
 
         <div className="mt-7 lg:mt-10">
-          <Button color='black' link='/projects'>Остальные работы</Button>
+          <Button color='black' link='/projects'>alla projekt</Button>
         </div>
       </section>
 
@@ -147,17 +149,19 @@ export default function Home({ mainData, contactData, employees }) {
             'bg-white rounded-3xl px-5 py-6',
             'lg:col-span-7 lg:flex lg:flex-col lg:justify-between lg:px-12 lg:py-10',
           )}>
-            <h3 className="t-h1 text-green">У вас остались вопросы?</h3>
+            <h3 className="t-h1 text-green">Ansökan om att skapa ett projekt</h3>
             <div className="mt-4 lg:mt-12">
-              <p className="t-24 paragraph">Для составления плана работ по готовому проекту, пожалуйста, загрузите его нажав кнопку ниже. И мы свяжемся с вами для обсуждения деталей.</p>
+              <p className="t-24 paragraph">Vi är redo att hjälpa dig att göra din drömrenovering på kort tid.</p>
+              
               {/* <div className="mt-7 lg:mt-5">
                 <Button color='green'>Загрузить</Button>
               </div> */}
+
             </div>
           </div>
 
           <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0">
-            <p className="t-24 lg:pr-28">Оставте свой номер и мы будем рады проконсультировать вас уже через 15 минут.</p>
+            <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
 
             <div className="mt-8 lg:mt-10">
               <Form orientation='v' showDisclaimer/>
@@ -167,7 +171,7 @@ export default function Home({ mainData, contactData, employees }) {
         </div>
       </section>
 
-      <section className="mt-16 lg:mt-24">
+      {/* <section className="mt-16 lg:mt-24">
         {team.title && <h2 className="t-h1 text-green w-1/2">{team.title}</h2>}
 
         <div className="mt-8">
@@ -201,7 +205,7 @@ export default function Home({ mainData, contactData, employees }) {
         <div className="mt-10">
           {team.button_text && <Button color='black' link='team'>{team.button_text}</Button>}
         </div>
-      </section>
+      </section> */}
 
       {!!reviews.length && (
         <section className='mt-20 lg:mt-24'>
@@ -210,6 +214,7 @@ export default function Home({ mainData, contactData, employees }) {
       )}
 
       <section className="mt-16 mb-16 lg:mt-20 lg:mb-20">
+        <h2 className="t-h1 text-green">Контакты</h2>
         <ContactMap
           companyName={contacts.company_name}
           address={contacts.address}

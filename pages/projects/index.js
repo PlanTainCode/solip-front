@@ -19,9 +19,9 @@ export default function Projects({projects}) {
   return (
     <MainLayout>
       <Head>
-        <title>Портфолио</title>
+        <title>Våra arbeten</title>
       </Head>
-      <h1 className="t-h1 text-green">Портфолио</h1>
+      <h1 className="t-h1 text-green">Våra arbeten</h1>
       <div className="mt-8 grid grid-cols-1 gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-y-14">
         {posts.map(({imageUrl, title, description, link}, index) => (
           <ShortPost
