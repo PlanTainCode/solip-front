@@ -51,11 +51,15 @@ export default function Home({ mainData, contactData, employees }) {
     // console.log(image.data?.attributes)
     return {
       imageUrl: getImageUrl(image.data?.attributes.url),
+      imageUrl: getImageUrl(image.data?.attributes.url),
       title,
       text: content,
       link: `/projects/${project.data?.attributes.slug}`
+      link: `/projects/${project.data?.attributes.slug}`
     }
   });
+
+
 
 
   const blocks = steps.map(({ title, description, slider }) => {
@@ -102,6 +106,7 @@ export default function Home({ mainData, contactData, employees }) {
       </section>
 
       {/* {form_1 && (
+      {/* {form_1 && (
         <section className={cn(
           'rounded-3xl border border-black px-5 py-6 mt-14',
           'lg:flex lg:justify-between lg:items-center lg:border-2 lg:px-8 lg:py-7 lg:mt-20'
@@ -112,7 +117,9 @@ export default function Home({ mainData, contactData, employees }) {
           </div>
         </section>
       )} */}
+      )} */}
 
+      {/* <section className='mt-14 lg:mt-20'>
       {/* <section className='mt-14 lg:mt-20'>
         {services.content && <p className="paragraph t-24">{services.content}</p>}
         {services.button_text && (
@@ -120,6 +127,7 @@ export default function Home({ mainData, contactData, employees }) {
             <Button link='/services' color='green'>{services.button_text}</Button>
           </div>
         )}
+      </section> */}
       </section> */}
 
       <section className='mt-14 lg:mt-24'>
@@ -131,6 +139,7 @@ export default function Home({ mainData, contactData, employees }) {
       </section>
 
       <section className="mt-14 lg:mt-20">
+        <h2 className="t-h1 text-green">Våra arbeten</h2>
         <h2 className="t-h1 text-green">Våra arbeten</h2>
 
         <div className="mt-8 lg:mt-14">
@@ -150,17 +159,22 @@ export default function Home({ mainData, contactData, employees }) {
             'lg:col-span-7 lg:flex lg:flex-col lg:justify-between lg:px-12 lg:py-10',
           )}>
             <h3 className="t-h1 text-green">Ansökan om att skapa ett projekt</h3>
+            <h3 className="t-h1 text-green">Ansökan om att skapa ett projekt</h3>
             <div className="mt-4 lg:mt-12">
+              <p className="t-24 paragraph">Vi är redo att hjälpa dig att göra din drömrenovering på kort tid.</p>
+              
               <p className="t-24 paragraph">Vi är redo att hjälpa dig att göra din drömrenovering på kort tid.</p>
               
               {/* <div className="mt-7 lg:mt-5">
                 <Button color='green'>Загрузить</Button>
               </div> */}
 
+
             </div>
           </div>
 
           <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0">
+            <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
             <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
 
             <div className="mt-8 lg:mt-10">
@@ -171,6 +185,7 @@ export default function Home({ mainData, contactData, employees }) {
         </div>
       </section>
 
+      {/* <section className="mt-16 lg:mt-24">
       {/* <section className="mt-16 lg:mt-24">
         {team.title && <h2 className="t-h1 text-green w-1/2">{team.title}</h2>}
 
@@ -205,6 +220,7 @@ export default function Home({ mainData, contactData, employees }) {
         <div className="mt-10">
           {team.button_text && <Button color='black' link='team'>{team.button_text}</Button>}
         </div>
+      </section> */}
       </section> */}
 
       {!!reviews.length && (

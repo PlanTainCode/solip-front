@@ -62,6 +62,7 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
             <Input
               type='text'
               placeholder="namn"
+              placeholder="namn"
               value={name}
               onChange={setName}
               error={errorName}
@@ -79,6 +80,7 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
       {showDisclaimer &&
         <div className="mt-5 text-12px">
           <p>Genom att klicka på knappen godkänner du <a href="#" className="underline underline-offset-2">avtalet om offentligt erbjudande</a> och <a href="#" className="underline underline-offset-2">behandlingen av dina personuppgifter</a>.</p>
+          <p>Genom att klicka på knappen godkänner du <a href="#" className="underline underline-offset-2">avtalet om offentligt erbjudande</a> och <a href="#" className="underline underline-offset-2">behandlingen av dina personuppgifter</a>.</p>
         </div>
       }
 
@@ -90,7 +92,9 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
       )}>
         <div className="bg-silver rounded-3xl px-6 py-8 max-w-2xl lg:pt-24">
           <p className="t-h1 text-green text-center">har skickats</p>
+          <p className="t-h1 text-green text-center">har skickats</p>
           <div className="mt-8 lg:mt-16">
+            <Button color="green" onClick={() => setShowSuccessPopup(false)}>stänga</Button>
             <Button color="green" onClick={() => setShowSuccessPopup(false)}>stänga</Button>
           </div>
         </div>
