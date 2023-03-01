@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import Head from 'next/head'
 import Image from 'next/image'
 import Button from '../components/elements/button'
@@ -19,6 +20,7 @@ import Form from '../components/modules/form';
 import { fetcher } from "../lib/api";
 import { getImageUrl } from '../lib/image';
 import SliderReview from '../components/modules/sliderReview';
+import ShortPost from "../components/elements/shorPost";
 
 const slides = [
   {
@@ -44,17 +46,19 @@ const slides = [
   },
 ];
 
-export default function Home({ mainData, contactData, employees }) {
+const getNewsLinkBySlug = (slug) => {
+  return `/news/${slug}`;
+};
+
+export default function Home({ mainData, contactData, employees, news }) {
   const contacts = contactData.attributes;
   const { firstscreen, form_1, services, team, projects, steps, title_1, title_2, reviews } = mainData.attributes;
   const portfolio = projects.map(({ title, content, image, project }) => {
     // console.log(image.data?.attributes)
     return {
       imageUrl: getImageUrl(image.data?.attributes.url),
-      imageUrl: getImageUrl(image.data?.attributes.url),
       title,
       text: content,
-      link: `/projects/${project.data?.attributes.slug}`
       link: `/projects/${project.data?.attributes.slug}`
     }
   });
@@ -105,7 +109,60 @@ export default function Home({ mainData, contactData, employees }) {
         </div>
       </section>
 
-      {/* {form_1 && (
+      {/* Kalk */}
+      <section className='mt-16 lg:mt-24'>
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-10">
+
+          <div className={cn(
+            'bg-white rounded-3xl px-5 py-6',
+            'lg:col-span-7 lg:flex lg:flex-col lg:justify-between lg:px-12 lg:py-10',
+          )}>
+            <h3 className="t-40 font-semibold text-green">Kalkylator för reparationskostnader</h3>
+            <div className="mt-4 lg:mt-12">
+              
+              <p className="t-24 paragraph">Du kan använda kalkylatorn för att snabbt beräkna den preliminära reparationskostnaden direkt på webbplatsen. Välj bara vilka tjänster du behöver så gör kalkylatorn det åt dig.</p>
+              
+              <div className="mt-7 lg:mt-5">
+                <a href="#"><Button color='black'>Gå till miniräknare</Button></a>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0">
+            <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
+
+            <div className="mt-8 lg:mt-10">
+              <Form orientation='v' showDisclaimer/>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* News */}
+      <section className='mt-14 lg:mt-24'>
+        <div className="mb-8 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:mb-14">
+          <h2 className="t-h1 text-green col-span-8">{title_1}</h2>
+        </div>
+        <div className="mt-6 mb-16 grid grid-cols-1 gap-10 lg:mt-8 lg:mb-20 lg:grid-cols-6 lg:gap-y-14">
+          {news.map(({imageUrl, title, description, link}, index) => (
+            <div className={cn({
+              'col-span-full': index === 0,
+              'lg:col-span-3': [0,1,2].includes(index),
+              'lg:col-span-2': ![0,1,2].includes(index),
+            })} key={title}>
+              <ShortPost
+                imageUrl={imageUrl}
+                title={title}
+                description={description}
+                link={link}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
       {/* {form_1 && (
         <section className={cn(
           'rounded-3xl border border-black px-5 py-6 mt-14',
@@ -117,9 +174,7 @@ export default function Home({ mainData, contactData, employees }) {
           </div>
         </section>
       )} */}
-      )} */}
 
-      {/* <section className='mt-14 lg:mt-20'>
       {/* <section className='mt-14 lg:mt-20'>
         {services.content && <p className="paragraph t-24">{services.content}</p>}
         {services.button_text && (
@@ -127,7 +182,6 @@ export default function Home({ mainData, contactData, employees }) {
             <Button link='/services' color='green'>{services.button_text}</Button>
           </div>
         )}
-      </section> */}
       </section> */}
 
       <section className='mt-14 lg:mt-24'>
@@ -159,9 +213,7 @@ export default function Home({ mainData, contactData, employees }) {
             'lg:col-span-7 lg:flex lg:flex-col lg:justify-between lg:px-12 lg:py-10',
           )}>
             <h3 className="t-h1 text-green">Ansökan om att skapa ett projekt</h3>
-            <h3 className="t-h1 text-green">Ansökan om att skapa ett projekt</h3>
             <div className="mt-4 lg:mt-12">
-              <p className="t-24 paragraph">Vi är redo att hjälpa dig att göra din drömrenovering på kort tid.</p>
               
               <p className="t-24 paragraph">Vi är redo att hjälpa dig att göra din drömrenovering på kort tid.</p>
               
@@ -175,7 +227,6 @@ export default function Home({ mainData, contactData, employees }) {
 
           <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0">
             <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
-            <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
 
             <div className="mt-8 lg:mt-10">
               <Form orientation='v' showDisclaimer/>
@@ -185,7 +236,6 @@ export default function Home({ mainData, contactData, employees }) {
         </div>
       </section>
 
-      {/* <section className="mt-16 lg:mt-24">
       {/* <section className="mt-16 lg:mt-24">
         {team.title && <h2 className="t-h1 text-green w-1/2">{team.title}</h2>}
 
@@ -220,7 +270,6 @@ export default function Home({ mainData, contactData, employees }) {
         <div className="mt-10">
           {team.button_text && <Button color='black' link='team'>{team.button_text}</Button>}
         </div>
-      </section> */}
       </section> */}
 
       {!!reviews.length && (
@@ -263,11 +312,25 @@ export async function getStaticProps() {
     }
   }).slice(0, 3);
 
+  const response = await fetcher(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/allnews?populate=image&sort=publishedAt:desc`
+  );
+
+  const news = !response.data ? [] : response.data.map(({attributes}) => {
+    return {
+      imageUrl: getImageUrl(attributes.image.data.attributes.url),
+      title: attributes.title,
+      description: attributes.content,
+      link: getNewsLinkBySlug(attributes.slug)
+    }
+  }).slice(0, 2);
+
   return {
     props: {
       contactData: contactResponse.data,
       mainData: mainResponse.data,
       employees,
+      news,
     },
     revalidate: 10
   };

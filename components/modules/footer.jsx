@@ -22,16 +22,8 @@ export default function Footer() {
     { title: 'användbar information', link: '/resources' },
     { title: 'om oss', link: '/about' },
     { title: 'rotvältranedräkning', link: '#' },
-    { title: 'sekretesspolicy', link: '#' },
-    { title: 'hem', link: '/' },
-    { title: 'tjänster', link: '/services' },
-    { title: 'vårt arbete', link: '/projects' },
-    { title: 'kontakter', link: '/contacts' },
-    { title: 'nyheter och kampanjer', link: '/news' },
-    { title: 'användbar information', link: '/resources' },
-    { title: 'om oss', link: '/about' },
-    { title: 'rotvältranedräkning', link: '#' },
-    { title: 'sekretesspolicy', link: '#' },
+    { title: 'integritetspolicy', link: '/integritetspolicy' },
+    { title: 'cookies', link: '/cookies' },
   ];
 
   const footerMenuChunks = spliceIntoChunks(menu, 4);
@@ -59,9 +51,8 @@ export default function Footer() {
         'lg:flex lg:justify-between lg:items-center lg:px-8 lg:py-7'
       )}>
         <p className="paragraph t-24 max-w-[640px]">Solip kan hjälpa dig med ditt projekt från konstruktion och godkännande till driftsättning.</p>
-        <p className="paragraph t-24 max-w-[640px]">Solip kan hjälpa dig med ditt projekt från konstruktion och godkännande till driftsättning.</p>
         <div className="mt-6 lg:mt-0 lg:w-100">
-          <Form orientation='v' short buttonText={'skicka förfrågan'}/>
+          <Form orientation='v' short buttonText={'skicka förfrågan'} showDisclaimer/>
         </div>
       </section>
 
@@ -80,7 +71,6 @@ export default function Footer() {
             </li>
             <li>пн-пт 10:00-18:00</li>
             <li>
-              <a href="#" className="hover:underline underline-offset-2">Skatteinformation</a>
               <a href="#" className="hover:underline underline-offset-2">Skatteinformation</a>
             </li>
           </ul>

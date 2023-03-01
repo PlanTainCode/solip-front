@@ -157,12 +157,15 @@ export default function Header() {
                   onClick={() => setShowMobileMenu(false)}
                 />
               )}
+              <li className='mt-8'>
+                <a href='tel:+46 73 542 76 22' className='hover:underline underline-offset-2 font-semibold'>+46 73 542 76 22</a>
+              </li>
             </ul>
 
             <div className="mt-16">
-              <p className="t-h2">остались вопросы?</p>
+              <p className="t-h2">Har du en fråga? Lämna din förfrågan så ger vi dig råd.</p>
               <div className="mt-4">
-                <Form orientation='v'/>
+                <Form orientation='v' showDisclaimer/>
               </div>
             </div>
           </div>

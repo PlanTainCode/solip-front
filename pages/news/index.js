@@ -41,7 +41,7 @@ export default function News({ news }) {
 
 export async function getStaticProps() {
   const response = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/allnews?populate=image`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/allnews?populate=image&sort=publishedAt:desc`
   );
 
   const news = !response.data ? [] : response.data.map(({attributes}) => {

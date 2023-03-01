@@ -40,7 +40,7 @@ export default function Resources({ resources }) {
 
 export async function getStaticProps() {
   const response = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/resources?populate=image`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/resources?populate=image&sort=publishedAt:desc`
   );
 
   const resources = !response.data ? [] : response.data.map(({attributes}) => {

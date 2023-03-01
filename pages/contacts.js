@@ -28,7 +28,7 @@ export default function Team({ pageData }) {
         </p>
 
         <div className="mt-4 lg:mt-5">
-          <Form orientation="h"/>
+          <Form orientation="h" showDisclaimer/>
         </div>
       </div>
     </MainLayout>
