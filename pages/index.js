@@ -144,7 +144,7 @@ export default function Home({ mainData, contactData, employees, news }) {
       {/* News */}
       <section className='mt-14 lg:mt-24'>
         <div className="mb-8 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:mb-14">
-          <h2 className="t-h1 text-green col-span-8">{title_1}</h2>
+          <h2 className="t-h1 text-green col-span-8">NYHETER</h2>
         </div>
         <div className="mt-6 mb-16 grid grid-cols-1 gap-10 lg:mt-8 lg:mb-20 lg:grid-cols-6 lg:gap-y-14">
           {news.map(({imageUrl, title, description, link}, index) => (
