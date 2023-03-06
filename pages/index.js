@@ -131,7 +131,7 @@ export default function Home({ mainData, contactData, employees, news }) {
               <p className="t-24 paragraph">Du kan använda kalkylatorn för att snabbt beräkna den preliminära reparationskostnaden direkt på webbplatsen. Välj bara vilka tjänster du behöver så gör kalkylatorn det åt dig.</p>
               
               <div className="mt-7 lg:mt-5">
-                <a href="#"><Button color='black'>Gå till miniräknare</Button></a>
+                <a href="https://solipcalculator.tech/"><Button color='black'>Gå till miniräknare</Button></a>
               </div>
 
 
