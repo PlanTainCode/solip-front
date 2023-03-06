@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import cn from "classnames";
 import Button from "../elements/button";
 import Input from "../elements/input";
+import axios from "axios";
 
 export default function Form({ orientation = 'v', showDisclaimer, short, buttonText }) {
   const [name, setName] = useState('');
@@ -41,6 +42,19 @@ export default function Form({ orientation = 'v', showDisclaimer, short, buttonT
         return;
       }
     }
+
+    const data = {
+      name: name,
+      tel: phone,
+    }
+
+    axios.post('https://solipadmin.tech/api/forms', {data})
+      .then(function (response) {
+          console.log(response);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
 
     reset();
     showPopup();

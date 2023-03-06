@@ -13,7 +13,7 @@ export default function Button({children, color = 'white', className, link, ...p
   if (link) {
     return (
       <Link href={link} {...props}>
-        <a className={classNames}>{children}</a>
+        <a className={classNames} >{children}</a>
       </Link>
     );
   }

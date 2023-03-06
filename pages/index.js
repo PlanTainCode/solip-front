@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Button from '../components/elements/button'
@@ -21,6 +22,7 @@ import { fetcher } from "../lib/api";
 import { getImageUrl } from '../lib/image';
 import SliderReview from '../components/modules/sliderReview';
 import ShortPost from "../components/elements/shorPost";
+
 
 const slides = [
   {
@@ -88,6 +90,12 @@ export default function Home({ mainData, contactData, employees, news }) {
     }
   });
 
+  const myRef = React.useRef(null)
+
+  const scrollToMyRef = () => {
+      myRef.current.scrollIntoView({behavior: "smooth"})
+  }
+
   return (
     <MainLayout>
       <Head>
@@ -102,8 +110,8 @@ export default function Home({ mainData, contactData, employees, news }) {
           <div className="px-5 flex-1 flex flex-col lg:px-8">
             {firstscreen.text_1 && <p className="t-40 mt-4 lg:w-107.5">{firstscreen.text_1}</p>}
             {<p className="paragraph t-24 mt-5 lg:absolute lg:right-8 lg:bottom-8 lg:w-[58%]">{firstscreen.text_2}</p>}
-            <div className="mt-auto lg:absolute lg:left-8 lg:bottom-8 lg:w-80">
-              {firstscreen.button_text && <Button link='/contacts'>{firstscreen.button_text}</Button>}
+            <div onClick={() => scrollToMyRef()} className="mt-auto lg:absolute lg:left-8 lg:bottom-8 lg:w-80">
+              {firstscreen.button_text && <Button>{firstscreen.button_text}</Button>}
             </div>
           </div>
         </div>
@@ -194,7 +202,6 @@ export default function Home({ mainData, contactData, employees, news }) {
 
       <section className="mt-14 lg:mt-20">
         <h2 className="t-h1 text-green">Våra arbeten</h2>
-        <h2 className="t-h1 text-green">Våra arbeten</h2>
 
         <div className="mt-8 lg:mt-14">
           <SliderBanner slides={portfolio} showNavbar/>
@@ -225,7 +232,7 @@ export default function Home({ mainData, contactData, employees, news }) {
             </div>
           </div>
 
-          <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0">
+          <div className="bg-green text-silver rounded-3xl px-5 py-6 mt-12 lg:col-span-5 lg:px-8 lg:py-10 lg:mt-0" ref={myRef}>
             <p className="t-24 lg:pr-28">Skicka in en ansökan så kontaktar vi dig inom 30 minuter för att diskutera detaljerna.</p>
 
             <div className="mt-8 lg:mt-10">
