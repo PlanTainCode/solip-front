@@ -85,7 +85,7 @@ export default function Services({servicesData, categoriesData}) {
 
 export async function getStaticProps() {
   const servicesResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/services?populate=*`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/services?populate=*&?pagination[pageSize]=300`
   );
 
   const serviceСategoriesResponse = await fetcher(
