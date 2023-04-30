@@ -286,7 +286,7 @@ export default function Home({ mainData, contactData, employees, news }) {
       )}
 
       <section className="mt-16 mb-16 lg:mt-20 lg:mb-20">
-        <h2 className="t-h1 text-green">Контакты</h2>
+        <h2 className="t-h1 text-green">Kontakter</h2>
         <ContactMap
           companyName={contacts.company_name}
           address={contacts.address}
