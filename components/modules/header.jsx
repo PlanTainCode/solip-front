@@ -8,12 +8,12 @@ import { useRouter } from 'next/router';
 
 const menu = [
   { title: 'Hem', link: '/' },
-  { title: 'alla tjänster', link: '/services' },
-  { title: 'våra arbeten', link: '/projects' },
-  { title: 'kontakter', link: '/contacts' },
-  { title: 'nyheter och kampanjer', link: '/news' },
-  { title: 'användbar information', link: '/resources' },
-  { title: 'om oss', link: '/about' },
+  { title: 'Alla tjänster', link: '/services' },
+  { title: 'Våra arbeten', link: '/projects' },
+  { title: 'Kontakter', link: '/contacts' },
+  { title: 'Nyheter och kampanjer', link: '/news' },
+  { title: 'Användbar information', link: '/resources' },
+  { title: 'Om oss', link: '/about' },
 ];
 
 const fn = () => {};

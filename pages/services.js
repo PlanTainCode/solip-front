@@ -75,8 +75,8 @@ export default function Services({servicesData, categoriesData}) {
 
       <div className="mt-8 mb-14 grid grid-cols-1 gap-10 lg:mt-10 lg:grid-cols-4 lg:gap-10 lg:mb-20">
         {filteredPosts
-          .map(({ title, description, price, image }) => (
-            <ServicePost key={title} title={title} description={description} price={price} image={image}/>
+          .map(({ title, description, price, image }, index) => (
+            <ServicePost key={title + index} title={title} description={description} price={price} image={image}/>
         ))}
       </div>
     </MainLayout>

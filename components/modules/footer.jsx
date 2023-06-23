@@ -69,7 +69,7 @@ export default function Footer() {
             <li>
               <a href="mailto:info@solipbygg.se" className="hover:underline underline-offset-2">info@solipbygg.se</a>
             </li>
-            <li>пн-пт 10:00-18:00</li>
+            <li>Måndag-fredag 10:00-18:00</li>
             <li>
               <a href="#" className="hover:underline underline-offset-2">Skatteinformation</a>
             </li>
